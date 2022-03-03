@@ -19,19 +19,22 @@ import { get, set } from 'lodash';
       playground: true,
 
       context: ({ req, res }) => {
-        // get cookie from request
+        // Get the cookie from request
         const token = get(req, 'cookies.token');
-        console.log('token', token);
 
-        // verify cookie/token
+        console.log({ token });
+        // Verify the cookie
+
         const user = token ? decode(get(req, 'cookies.token')) : null;
 
+        // Attach the user object to the request object
         if (user) {
           set(req, 'user', user);
         }
 
         return { req, res };
       },
+      
     }),
     UsersModule,
   ],

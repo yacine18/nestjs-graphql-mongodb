@@ -18,9 +18,14 @@ export class UsersResolver {
     return this.usersService.login(createUserInput, ctx)
   }
 
+  @Query(() => User, { nullable: true })
+  async me(@Context() ctx: Ctx) {
+    return ctx.req.user;
+  }
+
   @Query(() => User, {nullable:true})
-  async me(@Context() ctx:Ctx) {
-    return ctx.req.user
+  async logout(@Context() ctx:Ctx) {
+    return this.usersService.logout(ctx)
   }
 
 }

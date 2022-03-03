@@ -7,6 +7,7 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import Ctx from 'src/types/ctx.types';
 import { CookieOptions } from 'express';
+import {omit} from 'lodash'
 
 const cookieOptions: CookieOptions = {
   domain: 'localhost',
@@ -45,9 +46,14 @@ export class UsersService {
       throw new Error('Email or Password incorrect');
     }
 
-    const token = signJwt(user._id);
+    const token = signJwt(user._id.toJSON());
 
     ctx.res.cookie('token', token, cookieOptions);
     return user;
+  }
+
+  async logout(context:Ctx) {
+    context.res.cookie('token', '', {...cookieOptions, maxAge:0})
+    return null
   }
 }
