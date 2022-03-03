@@ -2,7 +2,7 @@ import Ctx  from 'src/types/ctx.types';
 import { Resolver, Mutation, Args, Query, Context } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './schema/user.schema';
-import { CreateUserInput } from './dto/create-user.input';
+import { CreateUserInput } from './dto/user.input';
 
 @Resolver(() => User)
 export class UsersResolver {

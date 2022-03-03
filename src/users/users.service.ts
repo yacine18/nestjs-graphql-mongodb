@@ -1,5 +1,5 @@
 import { signJwt } from './../utils/jwt.utils';
-import { CreateUserInput } from './dto/create-user.input';
+import { CreateUserInput } from './dto/user.input';
 import { User, UserDocument } from './schema/user.schema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
