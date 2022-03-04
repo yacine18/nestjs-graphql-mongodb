@@ -9,7 +9,7 @@ export type UserDocument = User & mongoose.Document
 export class User {
   
   @Field(() => ID)
-  _id: number;
+  _id: string;
 
   @Prop({required:true, unique:true})
   @Field()

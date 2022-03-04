@@ -6,11 +6,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { get, set } from 'lodash';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     MongooseModule.forRoot(
-      'mongodb+srv://yassine:yassine@cluster0.5fb3l.mongodb.net/AuthDB?retryWrites=true&w=majority',
+      process.env.MONGO_URI
     ),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
