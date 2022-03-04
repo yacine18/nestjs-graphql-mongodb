@@ -1,16 +1,13 @@
 import * as jwt from 'jsonwebtoken';
 
-const secretKey = "@MLKM~#'poop1234";
-// const publicKey = "@MLKM~#'poop1234";
-
 export function signJwt(payload: any) {
-  return jwt.sign( payload, secretKey, { expiresIn: '1d' });
+  return jwt.sign( payload, process.env.JWT_SECRET, { expiresIn: '1d' });
 }
 
 export function decode(token: string) {
   if (!token) return null;
   try {
-    const decoded = jwt.verify(token, secretKey);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     return decoded;
   } catch (error) {
